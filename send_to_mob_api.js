@@ -1,7 +1,7 @@
 const fs = require('fs');
 const request = require('request');
 
-// Token récupéré via l'authentication de l'utilisateur admin_fonctionnel
+// Token récupéré via l'authentification de l'utilisateur admin_fonctionnel
 const API_TOKEN = "XX"
 // Fichier csv source des aides, utilise le caractère "µ" comme séparateur. 
 // Chaque ligne d'aide doit se terminer par µµ (le plus simple est d'ajouter des colonnes avant l'export)
@@ -10,7 +10,7 @@ const CSV_FILENAME = "exemple.csv"
 const API_URL = "http://.../v1/incentives"
 // En cas d'invalidité du lien de souscription, un lien par défaut peut-être utilisé
 const DEFAULT_SUBSCRIPTION_LINK = "http://..."
-// Affiche les erreurs de formattage des aides
+// Affiche les erreurs de formatage des aides
 const STOP_ON_INVALID_INPUT = true
 // Lance le script en mode test, les API ne seront pas appelées
 const TEST_RUN_DO_NOT_SEND_TO_API = true
@@ -138,7 +138,7 @@ fs.readFile(CSV_FILENAME, 'utf8', (err, data) => {
                 incentives[incentives.length -1][col] = parsed_data[i][j].replace("-", "")
         }
     }
-    // Une fois toutes les aides ajoutées, on convertis les champs au bon format pour l'API via les fonctions de conversions
+    // Une fois toutes les aides ajoutées, on convertit les champs au bon format pour l'API via les fonctions de conversions
     incentives = incentives.map(incentive => {
         try {
             incentive.incentiveType = convert.incentiveType(incentive.incentiveType)
